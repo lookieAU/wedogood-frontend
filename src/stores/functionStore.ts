@@ -43,7 +43,6 @@ const useFunctionStore = defineStore('functionStore', {
   }),
 
   actions: {
-    // Admin Dashboard Actions
     async getDashboardReport(month: string) {
       this.loading = true;
       try {
@@ -68,11 +67,10 @@ const useFunctionStore = defineStore('functionStore', {
       }
     },
 
-    // NGO Report Actions
     async submitReport(reportData: ReportData) {
       this.loading = true;
       try {
-        const res = await api.post('/reports/single', reportData);
+        const res = await api.post('/reports', reportData);
 
         if (res.data.success) {
           return { success: true, data: res.data.data, message: res.data.message };
@@ -140,7 +138,6 @@ const useFunctionStore = defineStore('functionStore', {
     },
 
     startPollingJobStatus(jobId: string) {
-      // Clear any existing polling interval
       if (this.pollingInterval) {
         clearInterval(this.pollingInterval);
       }
@@ -151,12 +148,11 @@ const useFunctionStore = defineStore('functionStore', {
         if (result.success && result.data) {
           const status = result.data.status;
 
-          // Stop polling if job is completed or failed
           if (status === 'completed' || status === 'failed') {
             this.stopPollingJobStatus();
           }
         }
-      }, 1000); // Poll every 1 second
+      }, 1000);
     },
 
     stopPollingJobStatus() {
