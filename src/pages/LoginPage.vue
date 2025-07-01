@@ -23,6 +23,7 @@
               :loading="loading"
               :disable="loading"
               class="login-input"
+              :hint="'Please use either ngo (or) admin as the username to login'"
             >
               <template v-slot:prepend>
                 <q-icon name="person" />
