@@ -14,7 +14,7 @@ declare module 'vue' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: 'http://localhost:6700/wedogood/api' });
+const api = axios.create({ baseURL: 'https://wedogood-backend.onrender.com/wedogood/api' });
 
 // Add token to auth header from localStorage
 api.interceptors.request.use((config) => {
